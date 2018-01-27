@@ -1,4 +1,4 @@
-#download the file
+#download the raw file
    community_url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FDATA.gov_NGAP.xlsx"
    download.file(community_url,"natgas.xlsx",method="curl")
 #load file into R
