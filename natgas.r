@@ -6,4 +6,3 @@
    dat<-read.xlsx("natgas.xlsx", rows = 18:23, cols = 7:15)
 #calculate answer
    sum(dat$Zip*dat$Ext,na.rm=T)
-   
