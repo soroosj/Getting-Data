@@ -6,7 +6,7 @@
 #create data table
    community <- tbl_df(community_raw)
 #filter on rows in which property value > $1m
-   filter(community, VAL==24)
+   community_filter <- filter(community, VAL==24)
 #count rows in which property value >$1m
    summarize(community_filter,n())
    
