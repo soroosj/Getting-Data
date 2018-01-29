@@ -5,7 +5,7 @@
 #load file into R
    community<-read.csv("community.csv")
 #filter on rows in which property value > $1m
-   community_filter <- community[community$VAL==24,]
+   community_filter <- community[which(community$VAL==24),]
 #count rows in which property value >$1m
    nrow(community_filter)
    
