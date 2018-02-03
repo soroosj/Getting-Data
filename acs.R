@@ -14,6 +14,10 @@ sqldf("SELECT pwgtp1
       FROM acs
       WHERE AGEP < 50")
 
+<<<<<<< HEAD
 #Question 3 - identify equivalent SQL function for R function unique (acs$AGEP)
+=======
+#Identify equivalent SQL function for R function unique (acs$AGEP)
+>>>>>>> 99a875343efbc18c69a3bbbe8cd56aabdd0d17bf
 sqldf("SELECT DISTINCT AGEP 
       FROM acs")
