@@ -1,3 +1,5 @@
+#Coursera Getting and Cleaning Data, Week 2 Quiz, Problems 2-3
+
 #Install sqldf package to source sqlf function
 library(sqldf)
 
@@ -12,3 +14,6 @@ sqldf("SELECT pwgtp1
       FROM acs
       WHERE AGEP < 50")
 
+#Identify equivalent SQL function for R function unique (acs$AGEP)
+sqldf("SELECT DISTINCT AGEP 
+      FROM acs")
