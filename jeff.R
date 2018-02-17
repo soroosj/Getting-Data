@@ -1,10 +1,10 @@
-#1. load packages into R
+#1. load package(s) into R
       library(jpeg)
 
-#2. define the filepath
+#2. define filepath
       jeff_url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fjeff.jpg"
       
-#3.download the file
+#3.download file to local directory
       download.file(jeff_url,"jeff.jpeg")
 
 #load file into R
