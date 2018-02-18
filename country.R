@@ -1,25 +1,35 @@
-#1. load package(s) into R
+#1a. load package(s) into R
       library(tidyverse)
 
-#2. define filepath(s)
+#1b. define filepath(s)
       gdp_url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FGDP.csv"
       education_url<-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2FEDSTATS_Country.csv"
       
-#3.download file(s) to local directory
+#1c.download file(s) to local directory
       download.file(gdp_url,"gdp.csv")
       download.file(education_url,"education.csv")
 
-#4.load file(s) into R
-      gdp<-read.csv("gdp.csv", skip = 3, stringsAsFactors = F, na.strings = "")
-      as.tibble(gdp)
+#1d.load file(s) to R
+      gdp<-read.csv("gdp.csv", skip = 5, header = FALSE, na.strings = c("","NA"), nrows=190, stringsAsFactors = F)
+
       education<-read.csv("education.csv", stringsAsFactors = F)
-      as.tibble(education)
       
-#filter N/As
-      gdp_filter <- filter (gdp, !is.na(Ranking)) 
+#2a. simplify gdp to required rows, columns
+      gdp <- filter (gdp) %>%
+      select (V1, V2, V4, V5)  %>%
+      as.tibble() 
+
+#2b. simplify education to required columns      
+      education <- select (education, CountryCode) %>%
+      as.tibble()
       
-#join tables
-      combine <- inner_join(gdp_filter, education, by = c("X" = "CountryCode")) %>%
-      nrow() %>%
-      select(X,Table.Name, Ranking, US.dollars.)
+#3. join tables
+      combine <- inner_join(gdp, education, by = c("V1" = "CountryCode")) 
+
+#4a. count unique rows across tables
+      nrow(combine) 
       
+#4b. identify 13th smallest GDP 
+      combine <- arrange (combine, desc(V2))
+      colnames (combine) <- c("Country Code", "GDP Rank", "Country Name", "GDP")
+      combine[13,]
