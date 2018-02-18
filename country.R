@@ -10,14 +10,13 @@
       download.file(education_url,"education.csv")
 
 #4.load file(s) into R
-      gdp<-read_csv("gdp.csv",col_names = F)
-      education<-read_csv("education.csv")
-   
-#filter N/As
-      gdp_complete <- filter (gdp, !is.na(X2)) 
+      gdp<-read.csv("gdp.csv", skip = 3, stringsAsFactors = F)
+      as.tibble(gdp)
+      education<-read.csv("education.csv", stringsAsFactors = F)
+      as.tibble(education)
       
 #join tables
-      combine <- inner_join(gdp_complete, education, by = c("X1" = "CountryCode"))
+      combine <- inner_join(gdp, education, by = c("X" = "CountryCode"))
       nrow(combine)
-      combine_sort <- arrange (combine,desc(X5))
+      combine_sort <- arrange (combine,desc(Ranking))
       
