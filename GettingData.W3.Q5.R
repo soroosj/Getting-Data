@@ -19,9 +19,9 @@
    combine <- inner_join(gdp_short, education_short, by = c("V1" = "CountryCode"))
    colnames (combine) <- c("Country.Code", "GDP.Rank", "Country.Name", "GDP",'Income.Group')
 
-#5a. create GDP ranking quintiles
-   gdp.rank.quintiles <- cut(combine$GDP.Rank,5)
+#5a. create GDP quintile ranks
+   combine$gdp.rank.quintiles <- cut(combine$GDP.Rank,5)
    unique(gdp.rank.quintiles)
 
-#5b. create table of GDP rank quintile vs. income group
-   table (gdp.rank.quintiles,combine$Income.Group)
+#5b. create table of GDP quintile rank vs. income group
+   table (combine$gdp.rank.quintiles,combine$Income.Group)
