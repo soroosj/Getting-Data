@@ -9,9 +9,7 @@
 #2b.load file(s) to R
    gdp<-read.csv("gdp.csv", skip = 5, header = FALSE, nrows=190)
 
-#3a. remove decimals
-   gdp$V5 <- str_replace_all(gdp$V5,",","") %>%
-   as.integer()
-
 #3b. calculate mean
-   mean(gdp$V5)
+   gdp$V4 <- str_replace_all(gdp$V4,"\\\\","")
+   united <- grep("^United",gdp$V4) 
+   length(united)
