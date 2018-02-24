@@ -11,7 +11,6 @@
 
 #3a. remove decimals
    gdp$V5 <- str_replace_all(gdp$V5,",","") %>%
-   #gdp$V5 <- gsub(",","",gdp$V5) %>%
    as.integer()
 
 #3b. calculate mean
