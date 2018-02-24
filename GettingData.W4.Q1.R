@@ -8,8 +8,11 @@
 #2b.load file(s) to R
    community<-read.csv("community.csv")
 
-#3a. create list with field names of community
-   community_names<- names(community) %>%
+#3a. create list of field names
+   community_names <- names(community) %>%
+
+#3b. remove "wgtp" from field names
    strsplit("wgtp")
-   community_names[[123]]
    
+#3c. identify 123rd element
+   community_names[[123]]
