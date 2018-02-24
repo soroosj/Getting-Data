@@ -24,11 +24,7 @@
 #3. join tables
       combine <- inner_join(gdp_short, education_short, by = c("V1" = "CountryCode")) 
       colnames (combine) <- c("Country.Code", "GDP.Rank", "Country.Name", "GDP",'Income.Group')
-      combine <- mutate (combine,GDP.quant = quantile(GDP.Rank,)
       
-#4. create GDP ranking quintiles
-       
-      
-#5. count countries by Income.Group & GDP ranking quintile
-      combine_group <- group_by(combine, Income.Group)
+#4. count countries by Income.Group & GDP ranking quintile
+      combine_group <- group_by(combine, Income.Group) 
       summarize (combine_group, m=mean(GDP.Rank))
