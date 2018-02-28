@@ -5,12 +5,15 @@
 
 #2. download file(s) to local directory
    amzn = getSymbols("AMZN",auto.assign=FALSE)
-   sampleTimes = index(amzn)
+   times <- index(amzn)
 
 #3a. count 2010 dates
-   sampleTimesyear <- year(amzn) == 2010
-   sum(sampleTimesyear)
+   times_yr <- year(times)
+   times_yr <- times_yr [which (times_yr ==2010)]
+   NROW(times_yr)
 
 #4. count 2010 Mondays
-   sampleTimesyear <- year(amzn) == 2010 & wday(amzn,label=T) == "Mon"
-   sum(sampleTimesyear)
+   times_mon <- times [which (wday(times, label = TRUE) == "Mon")]
+   times_mon_2010 <- times_mon [which (year (times_mon) == 2010)]
+   NROW(times_mon_2010)
+   
