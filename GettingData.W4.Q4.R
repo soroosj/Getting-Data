@@ -20,7 +20,7 @@
    combine <- inner_join(gdp_short, education_short, by = c("V1" = "CountryCode"))
 
 #5a. identify countries with June fiscal year end
-   fiscal <- str_detect(combine$Special.Notes,"June")
+   fiscal <- str_detect(combine$Special.Notes,"Fiscal year end: June 30")
 
 #5b. count countries with June fiscal year end
    sum(fiscal)
