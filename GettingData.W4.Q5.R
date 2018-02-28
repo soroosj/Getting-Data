@@ -7,13 +7,13 @@
    amzn = getSymbols("AMZN",auto.assign=FALSE)
    times <- index(amzn)
 
-#3a. count 2010 dates
+#3a. count 2015 dates
    times_yr <- year(times)
-   times_yr <- times_yr [which (times_yr ==2010)]
+   times_yr <- times_yr [which (times_yr ==2012)]
    NROW(times_yr)
 
-#4. count 2010 Mondays
+#4. count 2015 Mondays
    times_mon <- times [which (wday(times, label = TRUE) == "Mon")]
-   times_mon_2010 <- times_mon [which (year (times_mon) == 2010)]
-   NROW(times_mon_2010)
+   times_mon_2012 <- times_mon [which (year (times_mon) == 2012)]
+   NROW(times_mon_2012)
    
