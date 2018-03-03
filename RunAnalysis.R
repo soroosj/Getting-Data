@@ -8,7 +8,7 @@
 
 #2b.load file(s) to R
    train<-read_delim("UCI HAR Dataset/Train/X_train.txt", delim = " ", col_names = FALSE)
-   test<-read_delim("UCI HAR Dataset/Test/X_test.txt", col_names = FALSE)
+   test<-read_delim("UCI HAR Dataset/Test/X_test.txt", delim = " ", col_names = FALSE)
 
 #3. simplify to required rows, columns
    gdp_short <- select (gdp, V1, V2, V4, V5)
