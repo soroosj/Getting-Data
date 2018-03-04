@@ -8,8 +8,8 @@
 
 #2b.load file(s) to R
    train<-read_fwf("UCI HAR Dataset/Train/X_train.txt", fwf_empty("UCI HAR Dataset/Train/X_train.txt"))
-   test<-read_fwf("UCI HAR Dataset/Test/X_test.txt", fwf_empty("UCI HAR Dataset/Test/X_test.txt"))
    as.tibble(train)
+   test<-read_fwf("UCI HAR Dataset/Test/X_test.txt", fwf_empty("UCI HAR Dataset/Test/X_test.txt"))
    as.tibble(test)
    activity_train <-read_delim("UCI HAR Dataset/Train/y_train.txt", delim = " ", col_names = FALSE)
    activity_test <-read_delim("UCI HAR Dataset/Test/y_test.txt", delim = " ", col_names = FALSE)
@@ -20,21 +20,26 @@
 
 #3a.add column headers to primary files
    features_labels <- features_labels$X2
-   colnames(train) <- features_labels
-   colnames(test) <- features_labels
+   colnames(train) <- make.names(features_labels, unique = TRUE)
+   colnames(test) <- make.names(features_labels, unique = TRUE)
    
-#3b. add activity, subject to primary files
-   train <- cbind (subject_train,activity_train, train)
+#3b. add subject to primary files
+   train2 <- cbind (subject_train,train) %>%
+      rename(Subject = X1)
+   test2 <- cbind (subject_test,test) %>%
+      rename(Subject = X1)
    
-#3. simplify to required rows, columns
-   gdp_short <- select (gdp, V1, V2, V4, V5)
-   education_short <- select (education, CountryCode, Special.Notes)
+#3c. add actvity to primary files
+   train2 <- cbind (activity_train,train2) %>%
+      rename(Activity = X1)
+   test2 <- cbind (activity_test,test2) %>%
+      rename(Activity = X1)
 
-#4. join tables
-   combine <- inner_join(gdp_short, education_short, by = c("V1" = "CountryCode"))
-
-#5a. identify countries with June fiscal year end
-   fiscal <- str_detect(combine$Special.Notes,"Fiscal year end: June 30")
-
-#5b. count countries with June fiscal year end
-   sum(fiscal)
+#3d. combine files
+   combine <- rbind(test2, train2)
+   
+#3e. pull in activity name
+   combine$Activity<-as.character(combine$Activity)
+   activity_labels$X1<-as.character(activity_labels$X1)
+   combine <- left_join(combine, activity_labels, by = c("Activity" = "X1")) %>%
+      rename(Activity_Name=X2)
