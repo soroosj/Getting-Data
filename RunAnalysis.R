@@ -49,5 +49,10 @@
    
 #5. converts to tidy date set
    combine3 <- gather(combine2, "Stat_Name", "Stat_Value",tBodyAcc.std...X:angle.Z.gravityMean.) %>%
-   arrange(Subject,Activity_Name)
+   arrange(Subject,Activity_Name, Stat_Name)
+   
+#6. calculates average by activity, subject
+   combine4 <-group_by(combine3, Subject,Activity_Name, Stat_Name) %>%
+   summarize (Mean = mean(Stat_Value))
+   
    
