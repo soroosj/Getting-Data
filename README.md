@@ -23,7 +23,7 @@
       Export results to csv.file
           6.  write stats output to a file
 
-#2. Code book
+# 2. Code book
       Subject - code from 1-30 that designated each of the test or training individuals
       Activity - categorization of each of 6 possible activities (LAYING, SITTING, STANDING, WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS)
       Stat_Name - mean or standard deviation  of hundreds of running-related statistics.  
