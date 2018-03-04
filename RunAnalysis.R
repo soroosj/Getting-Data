@@ -47,3 +47,7 @@
 #4. extract means, standard deviations
    combine2 <- select(combine, "Subject","Activity_Name",contains("std"),contains("mean"))
    
+#5. converts to tidy date set
+   combine3 <- gather(combine2, "Stat_Name", "Stat_Value",tBodyAcc.std...X:angle.Z.gravityMean.) %>%
+   arrange(Subject,Activity_Name)
+   
