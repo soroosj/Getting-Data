@@ -7,8 +7,14 @@
    unzip("run.zip")
 
 #2b.load file(s) to R
-   train<-read_delim("UCI HAR Dataset/Train/X_train.txt", delim = " ", col_names = FALSE)
-   test<-read_delim("UCI HAR Dataset/Test/X_test.txt", delim = " ", col_names = FALSE)
+   train<-read_fwf("UCI HAR Dataset/Train/X_train.txt", fwf_empty("UCI HAR Dataset/Train/X_train.txt"))
+   test<-read_fwf("UCI HAR Dataset/Test/X_test.txt", fwf_empty("UCI HAR Dataset/Test/X_test.txt"))
+   activity_train <-read_delim("UCI HAR Dataset/Train/y_train.txt", delim = " ", col_names = FALSE)
+   activity_test <-read_delim("UCI HAR Dataset/Test/y_test.txt", delim = " ", col_names = FALSE)
+   activity_labels <- read_fwf("UCI HAR Dataset/activity_labels.txt", fwf_empty("UCI HAR Dataset/activity_labels.txt"))
+   subject_train <-read_delim("UCI HAR Dataset/Train/subject_train.txt", delim = " ", col_names = FALSE)
+   subject_test <-read_delim("UCI HAR Dataset/Test/subject_test.txt", delim = " ", col_names = FALSE)
+   features_labels <- read_fwf("UCI HAR Dataset/features.txt", fwf_empty("UCI HAR Dataset/features.txt"))
 
 #3. simplify to required rows, columns
    gdp_short <- select (gdp, V1, V2, V4, V5)
