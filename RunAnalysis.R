@@ -35,7 +35,7 @@
    test2 <- cbind (activity_test,test2) %>%
       rename(Activity = X1)
 
-#3d. combine files
+#3d. combine training and test files
    combine <- rbind(test2, train2)
    
 #3e. pull in activity name
@@ -43,3 +43,7 @@
    activity_labels$X1<-as.character(activity_labels$X1)
    combine <- left_join(combine, activity_labels, by = c("Activity" = "X1")) %>%
       rename(Activity_Name=X2)
+   
+#4. extract means, standard deviations
+   combine2 <- select(combine, "Subject","Activity_Name",contains("std"),contains("mean"))
+   
